@@ -1,0 +1,16 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.bashrc:
+    ~/.gitconfig:
+    ~/.gitignore_global:
+    ~/.ssh:
+    ~/.shell:
+
+- shell:
+    [cat ~/.shell/apt-installs.txt | xargs sudo apt install -y]
