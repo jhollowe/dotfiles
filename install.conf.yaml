@@ -11,6 +11,7 @@
     ~/.gitignore_global:
     ~/.ssh:
     ~/.shell:
+    ~/.nanorc:
 
 - shell:
     - [packages/install-packages.sh, Install packages for system]
