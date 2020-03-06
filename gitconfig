@@ -1,0 +1,41 @@
+[alias]
+	cp = "cherry-pick"
+	drop = "rm --cached -r"
+	f = "fetch --tags --prune"
+	loga = "log --all"
+	logg = "log --graph"
+	pushf = "push --force-with-lease"
+	root = "rev-parse --show-toplevel"
+	s = "status"
+	tack = "commit --amend --no-edit"
+	tar = ! "tar() { git archive --format tar --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; tar"
+	targz = ! "targz() { git archive --format tar.gz --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; targz"
+	zip = ! "zip() { git archive --format zip --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; zip"
+
+[user]
+	email = johnahollowell@gmail.com
+	name = John Hollowell
+
+[core]
+	#convert to LF
+	autocrlf = false
+	editor = nano
+	eol = lf
+	excludesfile = ~/.gitignore_global
+
+[commit]
+	template = ~/.gitmessage
+
+[push]
+	default = upstream
+
+[pull]
+## default pulls to not start a merge; run git pull --no-ff to
+	ff = only
+
+[merge]
+	ff = false
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
