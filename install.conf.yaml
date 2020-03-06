@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~', '~/.config']
+- clean: ["~", "~/.config"]
 
 - link:
     ~/.bashrc:
@@ -13,4 +13,4 @@
     ~/.shell:
 
 - shell:
-    [cat ~/.shell/apt-installs.txt | xargs sudo apt install -y]
+    - [packages/install-packages.sh, Install packages for system]
