@@ -7,7 +7,17 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # don't add common commands to history
-HISTIGNORE='ls:bg:fg:history'
+HISTIGNORE='ls:ll:lll:bg:fg:history'
 
+# store all the history!
 HISTSIZE=10000
 HISTFILESIZE=100000
+
+# immediately store command history, so even if session unexpectedly terminates, history is present
+PROMPT_COMMAND='history -a'
+
+# modify multiline commands to fit on a single line in the history
+shopt -s cmdhist
+
+# store the date and timestamp for each command
+HISTTIMEFORMAT='%F %T '
