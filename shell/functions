@@ -1,0 +1,21 @@
+
+mkcd(){
+	mkdir -p $1
+	cd $1
+}
+
+tarthis(){
+	if ! [ -z $1 ]; then
+		tar -czvf ${1%/}.tar.gz $1
+	else
+		tar -czvf "../${PWD##*/}.tar.gz" "../${PWD##*/}"
+	fi
+}
+
+pubip(){
+	curl -s https://api.ipify.org && echo ""
+}
+
+sudoops(){
+	sudo $(history -p !!) $@
+}

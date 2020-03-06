@@ -1,0 +1,19 @@
+# change or add options to commands
+alias "iotop"="sudo iotop"
+alias "l"="ls -hF"
+alias "ll"="ls -hlF"
+alias "ll"="ls -halF"
+
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# shortcuts
+alias ".."="cd .."
+alias "cd.."="cd .."
+alias "..."="cd ../.."
+
+# call functions or scripts
+alias dot="cd ~/dot-files && ./install"
