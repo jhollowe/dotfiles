@@ -18,3 +18,8 @@ for cfg in $(( find ~/.shell/ -maxdepth 1 -type f )) do
 	if [ -f ${cfg}_local ]; then
 		source ${cfg}_local
 done
+
+# load environment-specific commands
+if [ -f ~/.shell/env/selector.sh ]; then
+	source ~/.shell/env/selector.sh
+fi
