@@ -13,13 +13,16 @@ fi
 
 if [ -x "$(command -v apt)" ]; then
 	apt update
-	cat common-packages.txt apt-packages.txt | xargs apt install -y
+	cat common-packages.txt apt-packages.txt | egrep -v "^\s*(#|$)" | xargs apt install -y
+	return
 fi
 
 if [ -x "$(command -v yum)" ]; then
-	cat common-packages.txt yum-packages.txt | xargs yum install -y
+	cat common-packages.txt yum-packages.txt | egrep -v "^\s*(#|$)" | xargs yum install -y
+	return
 fi
 
 if [ -x "$(command -v apk)" ]; then
-	cat common-packages.txt apk-packages.txt | xargs apk add -y
+	cat common-packages.txt apk-packages.txt | egrep -v "^\s*(#|$)" | xargs apk add -y
+	return
 fi

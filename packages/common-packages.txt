@@ -1,2 +1,4 @@
 iotop
 net-tools
+# JSON cat/sed
+jq
