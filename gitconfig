@@ -1,5 +1,7 @@
 [alias]
+	co = "checkout"
 	cp = "cherry-pick"
+	del = "rm --cached"
 	drop = "rm --cached -r"
 	f = "fetch --tags --prune"
 	loga = "log --all"
