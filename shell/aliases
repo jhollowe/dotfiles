@@ -1,14 +1,11 @@
 # change or add options to commands
-alias "iotop"="sudo iotop"
+if test -x /usr/sbin/iotop; then alias "iotop"="sudo iotop"; fi
+if test -x /usr/sbin/nethogs; then alias "nethogs"="sudo nethogs"; fi
 alias "l"="ls -hF"
+alias "la"='ls -A'
 alias "ll"="ls -hlF"
-alias "ll"="ls -halF"
+alias "lll"="ls -halF"
 
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # shortcuts
 alias ".."="cd .."
