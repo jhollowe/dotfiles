@@ -1,5 +1,7 @@
 iotop
 net-tools
+#provides dig
+dnsutils
 # JSON cat/sed
 jq
 dstat
