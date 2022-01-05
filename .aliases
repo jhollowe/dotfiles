@@ -1,0 +1,18 @@
+
+alias dotcfg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# basic directory commands
+alias 'cd..'=' cd ..'
+alias '..'='cd ..'
+alias '...'='cd ../..'
+
+alias 'l'='ls -hF'
+alias 'll'='ls -hlF'
+alias 'lll'='ls -halF'
+
+# shell (bash) usability
+alias 'save'='history -a' # write out the current session history to disk
+alias 'incognito'='export HISTFILE=' # for the current session, do not write history
+
+# specific, common applications
+alias 'dc'='docker-compose'

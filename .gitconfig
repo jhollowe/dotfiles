@@ -1,8 +1,6 @@
 [alias]
 	co = "checkout"
 	cp = "cherry-pick"
-	s = "status"
-	tack = "commit --amend --no-edit"
 	del = "rm --cached"
 	drop = "rm --cached -r"
 	f = "fetch --tags --prune"
@@ -10,6 +8,8 @@
 	logg = "log --graph"
 	pushf = "push --force-with-lease"
 	root = "rev-parse --show-toplevel"
+	s = "status"
+	tack = "commit --amend --no-edit"
 	tar = ! "tar() { git archive --format tar --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; tar"
 	tgz = ! "targz() { git archive --format tar.gz --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; targz"
 	zip = ! "zip() { git archive --format zip --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; zip"
