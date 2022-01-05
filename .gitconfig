@@ -1,0 +1,39 @@
+[alias]
+	co = "checkout"
+	cp = "cherry-pick"
+	s = "status"
+	tack = "commit --amend --no-edit"
+	del = "rm --cached"
+	drop = "rm --cached -r"
+	f = "fetch --tags --prune"
+	loga = "log --all"
+	logg = "log --graph"
+	pushf = "push --force-with-lease"
+	root = "rev-parse --show-toplevel"
+	tar = ! "tar() { git archive --format tar --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; tar"
+	tgz = ! "targz() { git archive --format tar.gz --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; targz"
+	zip = ! "zip() { git archive --format zip --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; zip"
+
+
+[core]
+	#convert to LF
+	autocrlf = false
+	editor = nano
+	eol = lf
+	excludesfile = ~/.gitignore.global
+
+[init]
+  defaultBranch = main
+
+[merge]
+	# creates a commit even if the merge could just fast-forwardd
+	ff = false
+
+[user]
+	email = jhollowe@johnhollowell.com
+	name = John Hollowell
+
+# Allow per-host customizations in the .gitconfig.local file
+# these changes override this config; this should be very rarely used
+[include]
+	path = ~/.gitconfig.local
