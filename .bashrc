@@ -29,6 +29,17 @@ shopt -s autocd
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Prevent files from being overwritten by redirection.
+# Use >| to overwrite file with redirect
+set -o noclobber
+
+# default to nano for editing files
+EDITOR="nano"
+
+# use UTF-8, but sort files by the C method
+export LANG="en_US.utf8"
+export LC_COLLATE="C"
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
