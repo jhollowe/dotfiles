@@ -1,5 +1,8 @@
 [alias]
+	aliases = ! "git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
 	co = "checkout"
+	contrib = shortlog --summary --numbered
+	contributors = contrib
 	cp = "cherry-pick"
 	del = "rm --cached"
 	drop = "rm --cached -r"
@@ -14,13 +17,37 @@
 	tgz = ! "targz() { git archive --format tar.gz --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; targz"
 	zip = ! "zip() { git archive --format zip --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; zip"
 
+	# Pretty log of commits. Supports options of git log
+	# https://www.kernel.org/pub/software/scm/git/docs/git-log.html#_pretty_formats
+	log-pretty = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an - %aE>%Creset' --abbrev-commit
+
+[apply]
+	# detect whitespace errors when applying a patch
+	whitespace = warn
+
+[commit]
+	template = ~/.gitmessage
 
 [core]
 	#convert to LF
 	autocrlf = false
-	editor = nano
+	# will use EDITOR env var
 	eol = lf
-	excludesfile = ~/.gitignore.global
+	excludesfile = ~/.gitignore_global
+	fscache = true # only functional on windows
+
+	# Speed up commands involving untracked files such as `git status`.
+	# does not work correctly on Google Drive virtual device
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
+[diff "bin"]
+  # Use `hexdump` to diff binary files
+  textconv = hexdump -v -C
+
+[help]
+	# automatically executes the top suggestion in N/10 seconds
+	autocorrect = 20
 
 [init]
   defaultBranch = main
@@ -33,11 +60,14 @@
 	# default pulls to not start a merge; run git pull --no-ff to
 	ff = only
 
+[push]
+	default = upstream
+
 [user]
 	email = jhollowe@johnhollowell.com
 	name = John Hollowell
 
-# Allow per-host customizations in the .gitconfig.local file
+# Allow per-host customizations in the .gitconfig_local file
 # these changes override this config; this should be very rarely used
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.gitconfig_local
