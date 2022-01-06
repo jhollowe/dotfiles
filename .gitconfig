@@ -29,6 +29,10 @@
 	# creates a commit even if the merge could just fast-forwardd
 	ff = false
 
+[pull]
+	# default pulls to not start a merge; run git pull --no-ff to
+	ff = only
+
 [user]
 	email = jhollowe@johnhollowell.com
 	name = John Hollowell
