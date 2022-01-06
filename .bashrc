@@ -4,7 +4,10 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -105,6 +108,14 @@ fi
 
 if [ -f ~/.aliases ];then
 	. ~/.aliases
+fi
+
+##### ENVIRONMENTS #####
+
+# if starting WSL bash from the default location, cd to home.
+# if a custom location is set, leave it there
+if [ ${PWD^^} == "/MNT/C/WINDOWS/SYSTEM32" ]; then
+  cd -- ~
 fi
 
 ##### FUNCTIONS #####
