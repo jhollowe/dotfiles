@@ -1,5 +1,11 @@
+# programming cruft that should never be version controlled
 *.pyc
 /node_modules/
+
+# files that should not be version controlled
 tmp/**/*
 .env
+
+# OS files
 .DS_Store
+Thumbs.db

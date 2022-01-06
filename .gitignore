@@ -1,1 +1,9 @@
-.bash_history
+# start off ignoring all files
+*
+
+# un-ignore the dotfiles we want to version control
+!.aliases
+!.bashrc
+!.gitignore
+!.gitignore.global
+!README.md
