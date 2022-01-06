@@ -7,4 +7,5 @@
 !.gitignore
 !.gitignore.global
 !.vimrc
+!.wgetrc
 !README.md
