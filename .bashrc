@@ -39,6 +39,9 @@ set -o noclobber
 # default to nano for editing files
 EDITOR="nano"
 
+# make sudo password prompt more verbose
+export SUDO_PROMPT=${SUDO_PROMPT:-"[sudo] password for %u on %h: "}
+
 # use UTF-8, but sort files by the C method
 export LANG="en_US.utf8"
 export LC_COLLATE="C"

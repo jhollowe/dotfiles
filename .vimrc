@@ -1,10 +1,9 @@
 syntax on               " enable syntax highlighting
-set nobackup            " don't create pointless backup files; Use VCS instead
+set nobackup noswapfile " don't create pointless backup/swap files; Use VCS instead
 set autoread            " watch for file changes
 set number              " show line numbers
 set showmode            " show INSERT, VISUAL, etc. mode
 set showmatch           " show matching brackets
-set autoindent smartindent  " auto/smart indent
 set smarttab            " better backspace and tab functionality
 filetype on             " enable filetype detection
 filetype indent on      " enable filetype-specific indenting
