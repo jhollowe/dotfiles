@@ -143,3 +143,8 @@ tarthis(){
 pubip(){
 	curl -s https://api.ipify.org && echo ''
 }
+
+
+if [ -f ~/.bashrc_local ];then
+	. ~/.bashrc_local
+fi
