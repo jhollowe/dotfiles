@@ -4,10 +4,14 @@
 # un-ignore the dotfiles we want to version control
 !.aliases
 !.bashrc
+!.dircolors
+!.dotfiles-assets/*
+!.git-template/**/*
 !.gitignore
 !.gitignore_global
 !.gitmessage
 !.profile
+!.psqlrc
 !.tmux.conf
 !.vimrc
 !.wgetrc

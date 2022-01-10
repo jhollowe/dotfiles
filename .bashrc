@@ -114,6 +114,8 @@ if [ -f ~/.aliases ];then
 	. ~/.aliases
 fi
 
+# look into https://github.com/huyng/bashmarks/blob/master/bashmarks.sh
+
 ##### ENVIRONMENTS #####
 
 # if starting WSL bash from the default location, cd to home.
@@ -123,6 +125,17 @@ if [ ${PWD^^} == '/MNT/C/WINDOWS/SYSTEM32' ]; then
 fi
 
 ##### FUNCTIONS #####
+
+# adds detailed logging to terminal
+debug_prompt(){
+	# run as command is starting
+	export PS0='start\n'
+	# add details once program completes
+	export PS1='Process completed with code $0 at'"$(date)\n$PS1"
+}
+
+# allow setting the terminal's title
+termtitle() { printf "\033]0;$*\007"; }
 
 mkcd(){
 	mkdir -p -v "$1"
