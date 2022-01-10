@@ -8,6 +8,7 @@
 !.gitignore_global
 !.gitmessage
 !.profile
+!.tmux.conf
 !.vimrc
 !.wgetrc
 !README.md
