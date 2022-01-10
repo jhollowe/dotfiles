@@ -7,6 +7,7 @@
 !.gitignore
 !.gitignore_global
 !.gitmessage
+!.profile
 !.vimrc
 !.wgetrc
 !README.md

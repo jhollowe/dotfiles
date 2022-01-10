@@ -37,14 +37,15 @@ shopt -s checkwinsize
 set -o noclobber
 
 # default to nano for editing files
-EDITOR="nano"
+EDITOR='nano'
 
 # make sudo password prompt more verbose
-export SUDO_PROMPT=${SUDO_PROMPT:-"[sudo] password for %u on %h: "}
+export SUDO_PROMPT=${SUDO_PROMPT:-'[sudo] password for %u on %h: '}
 
 # use UTF-8, but sort files by the C method
-export LANG="en_US.utf8"
-export LC_COLLATE="C"
+export LANG='en_US.utf8'
+export LC_COLLATE='C'
+export CHARSET='UTF-8'
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -84,7 +85,7 @@ __bash_prompt() {
 	# If this is an xterm set the title to user@host:dir
 	case "$TERM" in
 		xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
-			export PS1="\[\e]0;"${PS_CHROOT}"\u@\h:\w\a\]$PS1"
+			export PS1='\[\e]0;'${PS_CHROOT}"\u@\h:\w\a\]$PS1"
 			;;
 		*)
 			;;
@@ -117,7 +118,7 @@ fi
 
 # if starting WSL bash from the default location, cd to home.
 # if a custom location is set, leave it there
-if [ ${PWD^^} == "/MNT/C/WINDOWS/SYSTEM32" ]; then
+if [ ${PWD^^} == '/MNT/C/WINDOWS/SYSTEM32' ]; then
   cd -- ~
 fi
 
