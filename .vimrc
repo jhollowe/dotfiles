@@ -24,6 +24,16 @@ set visualbell          " but leave on a visual bell
 set hlsearch            " highlighted search results
 set incsearch           " do incremental searching
 
+" Mouse support (scroll, visual select)
+set mouse=a
+
+" Alternate way to get out of edit mode, very useful when your terminal captures ESC
+imap jj <ESC>
+
+" More natural split directions
+set splitbelow
+set splitright
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
