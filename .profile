@@ -29,3 +29,7 @@ fi
 
 # disable user-to-user messaging
 # mesg n 2> /dev/null || true
+
+if [ -f ~/.profile_local ];then
+	. ~/.profile_local
+fi
