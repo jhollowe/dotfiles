@@ -134,8 +134,10 @@ mkcd(){
 # if an argiment is given, that directory will be tared into a tar file in the current directory
 tarthis(){
 	if [ -n "$1" ]; then
+		echo "creating tar file \"${1%/}.tar.gz\""
 		tar -czvf "${1%/}.tar.gz" "$1"
 	else
+		echo "creating tar file \"../${PWD##*/}.tar.gz\""
 		tar -czvf "../${PWD##*/}.tar.gz" "../${PWD##*/}"
 	fi
 }
