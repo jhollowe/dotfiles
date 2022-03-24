@@ -62,11 +62,12 @@ __bash_prompt() {
 		xterm-color|*-256color) color_prompt=yes;;
 	esac
 
-	local    red='\[\e[0;31m\]'
-	local  lblue='\[\e[1;34m\]'
-	local  lcyan='\[\e[1;36m\]'
-	local yellow='\[\e[0;33m\]'
-	local  white='\[\e[0;00m\]'
+	local     red='\[\e[0;31m\]'
+	local lpurple='\[\e[1;35m\]'
+	local   lblue='\[\e[1;34m\]'
+	local   lcyan='\[\e[1;36m\]'
+	local  yellow='\[\e[0;33m\]'
+	local   white='\[\e[0;00m\]'
 
 
 	if [ "$color_prompt" = yes ]; then
@@ -76,21 +77,22 @@ __bash_prompt() {
 			local username_color="${lcyan}"
 		fi
 
-		export PS1="${PS_CHROOT}${username_color}\u@\h${white}:${yellow}\w${white}\$ "
+		export PS1="${PS_CHROOT}${lpurple}${PS_TERM_NAME:+\"$PS_TERM_NAME\"}${username_color}\u@\h${white}:${yellow}\w${white}\$ "
 	else
-		export PS1="${PS_CHROOT}\u@\h:\w\$ "
+		export PS1="${PS_CHROOT}${PS_TERM_NAME:+\"$PS_TERM_NAME\"}\u@\h:\w\$ "
 	fi
 
 
 	# If this is an xterm set the title to user@host:dir
 	case "$TERM" in
 		xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
-			export PS1='\[\e]0;'${PS_CHROOT}"\u@\h:\w\a\]$PS1"
+			export PS1='\[\e]0;'${PS_CHROOT}${PS_TERM_NAME:+"\"$PS_TERM_NAME\""}"\u@\h:\w\a\]$PS1"
 			;;
 		*)
 			;;
 	esac
-	unset -f __bash_prompt
+	# remove this function if never used again
+	# unset -f __bash_prompt
 }
 
 __bash_prompt
@@ -124,7 +126,7 @@ fi
 
 ##### FUNCTIONS #####
 
-mkcd(){
+function mkcd {
 	mkdir -p -v "$1"
 	cd -- "$1"
 }
@@ -132,7 +134,7 @@ mkcd(){
 # tars the current directory
 # if no argument is give, the tar is created in the parent directory with this directory's name
 # if an argiment is given, that directory will be tared into a tar file in the current directory
-tarthis(){
+function tarthis {
 	if [ -n "$1" ]; then
 		echo "creating tar file \"${1%/}.tar.gz\""
 		tar -czvf "${1%/}.tar.gz" "$1"
@@ -143,10 +145,17 @@ tarthis(){
 }
 
 # display the internet-facing IP address of this host
-pubip(){
+function pubip {
 	curl -s https://api.ipify.org && echo ''
 }
 
+# sets a name for a terminal, used to help differentiate terminal sessions
+# name is added to prompt and tab/window title
+# do not give name to clear
+function set_term_name {
+	export PS_TERM_NAME="$1"
+	__bash_prompt
+}
 
 if [ -f ~/.bashrc_local ];then
 	. ~/.bashrc_local

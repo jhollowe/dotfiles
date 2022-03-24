@@ -10,26 +10,35 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+pathDirs='$HOME/bin $HOME/.local/bin'
 
+#echo $PATH
+for dir in $pathDirs; do
+#	echo -ne $dir
+	case ":$PATH:" in
+		*:$dir:*)
+#			echo " PRESENT"
+			;; # dir is in path
+		*)
+			if [ -d "$dir" ] ; then
+				PATH="$dir:$PATH"
+#				echo " ADDED"
+			fi
+			;;
+	esac
+done
+unset pathDirs
 
 # disable user-to-user messaging
 # mesg n 2> /dev/null || true
 
-if [ -f ~/.profile_local ];then
-	. ~/.profile_local
+if [ -f "$HOME/.profile_local" ];then
+	. "$HOME/.profile_local"
 fi
