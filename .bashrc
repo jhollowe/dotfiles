@@ -153,7 +153,7 @@ function pubip {
 # name is added to prompt and tab/window title
 # do not give name to clear
 function set_term_name {
-	export PS_TERM_NAME="$1"
+	export PS_TERM_NAME="$*"
 	__bash_prompt
 }
 
