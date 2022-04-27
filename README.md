@@ -10,7 +10,7 @@ To install these dotfiles, start with the following commands
 
 ```shell
 git clone --bare https://github.com/jhollowe/dot-files ~/.dotfiles/
-alias dotcfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotcfg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
 
 to completely overwrite your existing dotfiles, run `dotcfg reset --hard HEAD`. To save a copy of the existing dotfiles, use `dotcfg stash push -m "Save existing dotfiles"`. These files can be restored with `git stash apply`.
