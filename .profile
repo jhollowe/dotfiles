@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 
-pathDirs='$HOME/bin $HOME/.local/bin'
+pathDirs="$HOME/bin $HOME/.local/bin"
 
 #echo $PATH
 for dir in $pathDirs; do
