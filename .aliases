@@ -16,5 +16,6 @@ alias 'incognito'='export HISTFILE=' # for the current session, do not write his
 
 # specific, common applications
 alias 'dc'='docker-compose'
+alias 'kc'='kubectl'
 alias 'ta'='ta() { tmux attach ${1:+"-t $1"}; }; ta'
 alias 'date_str'='date "+%Y%m%d_%H%M%S"'
