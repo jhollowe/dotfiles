@@ -77,9 +77,9 @@ __bash_prompt() {
 			local username_color="${lcyan}"
 		fi
 
-		export PS1="${PS_CHROOT}${lpurple}${PS_TERM_NAME:+\"$PS_TERM_NAME\"}${username_color}\u@\h${white}:${yellow}\w${white}\$ "
+		export PS1="${PS_CHROOT}${lpurple}\$(__get_term_name)${username_color}\u@\h${white}:${yellow}\w${white}\$ "
 	else
-		export PS1="${PS_CHROOT}${PS_TERM_NAME:+\"$PS_TERM_NAME\"}\u@\h:\w\$ "
+		export PS1="${PS_CHROOT}\$(__get_term_name)\u@\h:\w\$ "
 	fi
 
 
@@ -92,7 +92,7 @@ __bash_prompt() {
 			;;
 	esac
 	# remove this function if never used again
-	# unset -f __bash_prompt
+	unset -f __bash_prompt
 }
 
 __bash_prompt
@@ -154,7 +154,17 @@ function pubip {
 # do not give name to clear
 function set_term_name {
 	export PS_TERM_NAME="$*"
-	__bash_prompt
+	if [ ! -z "$TMUX" ]; then
+		# rename the session if there is only one window, else rename the window
+		if [ $(tmux display-message -p '#{session_windows}') -eq 1 ];then
+			tmux rename-session $PS_TERM_NAME
+		else
+			tmux rename-window $PS_TERM_NAME
+		fi
+	fi
+}
+function __get_term_name {
+	echo -en ${PS_TERM_NAME:+\"$PS_TERM_NAME\"}
 }
 
 if [ -f ~/.bashrc_local ];then
