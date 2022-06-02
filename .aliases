@@ -5,6 +5,8 @@ alias dotcfg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias 'cd..'=' cd ..'
 alias '..'='cd ..'
 alias '...'='cd ../..'
+alias 'cdto'='cdto() { cd $(which $1 | xargs dirname); }; cdto ' # cd to the directory of the file (find on path)
+alias 'cdf'='cdf() { cd $(dirname $1); }; cdf ' # cd to the directory of the passed file
 
 alias 'l'='ls -hF'
 alias 'll'='ls -hlF'
