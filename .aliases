@@ -21,3 +21,5 @@ alias 'dc'='docker-compose'
 alias 'kc'='kubectl'
 alias 'ta'='ta() { tmux attach ${1:+"-t $1"}; }; ta'
 alias 'date_str'='date "+%Y%m%d_%H%M%S"'
+alias du0="du --max-depth=0 -h"
+alias du1="du --max-depth=1 -h"
