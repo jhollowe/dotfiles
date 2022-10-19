@@ -37,7 +37,8 @@ shopt -s checkwinsize
 set -o noclobber
 
 # default to nano for editing files
-EDITOR='nano'
+export EDITOR='nano'
+export VISUAL=$EDITOR
 
 # make sudo password prompt more verbose
 export SUDO_PROMPT=${SUDO_PROMPT:-'[sudo] password for %u on %h: '}
