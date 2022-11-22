@@ -23,3 +23,4 @@ alias 'ta'='ta() { tmux attach ${1:+"-t $1"}; }; ta'
 alias 'date_str'='date "+%Y%m%d_%H%M%S"'
 alias du0="du --max-depth=0 -h"
 alias du1="du --max-depth=1 -h"
+alias sshq="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
