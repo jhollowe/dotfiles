@@ -158,9 +158,9 @@ function set_term_name {
 	if [ ! -z "$TMUX" ]; then
 		# rename the session if there is only one window, else rename the window
 		if [ $(tmux display-message -p '#{session_windows}') -eq 1 ];then
-			tmux rename-session $PS_TERM_NAME
+			tmux rename-session "$PS_TERM_NAME"
 		else
-			tmux rename-window $PS_TERM_NAME
+			tmux rename-window "$PS_TERM_NAME"
 		fi
 	fi
 }
