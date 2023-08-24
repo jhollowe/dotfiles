@@ -38,6 +38,13 @@ set -o noclobber
 
 # default to nano for editing files
 export EDITOR='nano'
+
+# if running in the VS Code terminal, use VS Code as the editor
+if [ ! -z "$(env | grep VSCODE_)" ]; then
+	export EDITOR="code --wait"
+fi
+
+# use the same editor for the "visual" editor
 export VISUAL=$EDITOR
 
 # make sudo password prompt more verbose
