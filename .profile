@@ -42,3 +42,8 @@ unset pathDirs
 if [ -f "$HOME/.profile_local" ];then
 	. "$HOME/.profile_local"
 fi
+
+# if Nix is installed, load its environment
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ];then
+        source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
