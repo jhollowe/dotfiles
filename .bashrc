@@ -157,6 +157,11 @@ function pubip {
 	curl -s https://api.ipify.org && echo ''
 }
 
+# request all running GNU Parallel's to print their running jobs
+function show_parallel_jobs {
+	ps -ef | grep -e "perl\s$(which parallel)" | awk '{print $2}' | xargs kill -USR1
+}
+
 # sets a name for a terminal, used to help differentiate terminal sessions
 # name is added to prompt and tab/window title
 # do not give name to clear
