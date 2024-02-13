@@ -1,7 +1,8 @@
 [alias]
 	aliases = ! "git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
+	blamer = "blame -w -CCC"
 	co = "checkout"
-	contrib = shortlog --summary --numbered
+	contrib = "shortlog --summary --numbered"
 	contributors = contrib
 	cp = "cherry-pick"
 	del = "rm --cached"
@@ -24,6 +25,9 @@
 [apply]
 	# detect whitespace errors when applying a patch
 	whitespace = warn
+
+[branch]
+        sort = -committerdate
 
 [commit]
 	template = ~/.gitmessage
@@ -66,6 +70,10 @@
 [user]
 	email = jhollowe@johnhollowell.com
 	name = John Hollowell
+
+# rerere caches how you resolve a merge conflict so if you make that merge again, it will automatically resolve
+[rerere]
+        enabled = true
 
 # Allow per-host customizations in the .gitconfig_local file
 # these changes override this config; this should be very rarely used
