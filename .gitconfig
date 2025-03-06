@@ -17,6 +17,7 @@
 	tar = ! "tar() { git archive --format tar --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; tar"
 	tgz = ! "targz() { git archive --format tar.gz --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; targz"
 	zip = ! "zip() { git archive --format zip --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; zip"
+	default-branch = ! "git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'"
 
 	# Pretty log of commits. Supports options of git log
 	# https://www.kernel.org/pub/software/scm/git/docs/git-log.html#_pretty_formats
@@ -54,7 +55,7 @@
 	autocorrect = 20
 
 [init]
-  defaultBranch = main
+	defaultBranch = main
 
 [merge]
 	# creates a commit even if the merge could just fast-forwardd
