@@ -45,7 +45,7 @@ if [ ! -z "$(env | grep VSCODE_)" ]; then
 fi
 
 # use the same editor for the "visual" editor
-export VISUAL=$EDITOR
+export VISUAL="$EDITOR"
 
 # make sudo password prompt more verbose
 export SUDO_PROMPT=${SUDO_PROMPT:-'[sudo] password for %u on %h: '}
