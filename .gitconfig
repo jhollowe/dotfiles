@@ -58,11 +58,11 @@
 	defaultBranch = main
 
 [merge]
-	# creates a commit even if the merge could just fast-forwardd
+	# creates a commit even if the merge could just fast-forward
 	ff = false
 
 [pull]
-	# default pulls to not start a merge; run git pull --no-ff to
+	# default pulls to not start a merge; run git pull --no-ff to merge instead of this default
 	ff = only
 
 [push]
