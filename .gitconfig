@@ -5,6 +5,7 @@
 	contrib = "shortlog --summary --numbered"
 	contributors = contrib
 	cp = "cherry-pick"
+	commitn = "commit --no-verify" # useful to purposly skip pre-commit checks
 	del = "rm --cached"
 	drop = "rm --cached -r"
 	f = "fetch --tags --prune"
