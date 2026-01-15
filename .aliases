@@ -19,9 +19,16 @@ alias 'incognito'='export HISTFILE=' # for the current session, do not write his
 # specific, common applications
 alias 'dc'='docker-compose'
 alias 'kc'='kubectl'
-alias 'rp'='realpath'
-alias 'ta'='ta() { tmux attach ${1:+"-t $1"}; }; ta'
 alias 'date_str'='date "+%Y%m%d_%H%M%S"'
+alias 'rp'='realpath'
 alias du0="du --max-depth=0 -h"
 alias du1="du --max-depth=1 -h"
-alias sshq="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+alias sshq="ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+alias pvl="pv --line-mode --timer --average-rate --bytes"
+alias 'codehere'='code $(realpath .)'
+
+# tmux ease-of-use
+alias 'ta'='ta() { tmux attach ${1:+-t "$1"}; }; ta'
+alias 'win'='tmux new-window'
+alias 'set_session_name'='set_session_name() { tmux rename-session $@ ; }; set_session_name'
+alias 'set_window_name'='set_window_name() { tmux rename-window $@ ; }; set_window_name'

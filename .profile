@@ -16,20 +16,23 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
+if [ -f "$HOME/.profile_local" ];then
+	. "$HOME/.profile_local"
+fi
 
-pathDirs="$HOME/bin $HOME/.local/bin"
+pathDirs="$HOME/bin $HOME/.local/bin $HOME/.local/script_links"
 
 #echo $PATH
 for dir in $pathDirs; do
-#	echo -ne $dir
+	# echo -ne $dir
 	case ":$PATH:" in
 		*:$dir:*)
-#			echo " PRESENT"
+			# echo " PRESENT"
 			;; # dir is in path
 		*)
 			if [ -d "$dir" ] ; then
 				PATH="$dir:$PATH"
-#				echo " ADDED"
+				# echo " ADDED"
 			fi
 			;;
 	esac
@@ -38,12 +41,3 @@ unset pathDirs
 
 # disable user-to-user messaging
 # mesg n 2> /dev/null || true
-
-if [ -f "$HOME/.profile_local" ];then
-	. "$HOME/.profile_local"
-fi
-
-# if Nix is installed, load its environment
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ];then
-        source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi

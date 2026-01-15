@@ -139,6 +139,39 @@ function mkcd {
 	cd -- "$1"
 }
 
+function git_tree_summary {
+    parent_dir=${1:-$PWD}
+    prefix=${2:-}
+    for f in "$parent_dir"/*;do
+        # skip any files or dirs with no .git dir
+        if [ ! -d "$f" ] || [ ! -e "$f/.git" ];then continue;fi
+        git_status="$(git -C "$f" status --porcelain=v2 -b --show-stash)"
+
+        # if there are thing to print about this repo, print its name
+        if printf "$git_status" | grep -q -v -e "^# branch.oid" -e "^# branch.head" -e "^# branch.upstream" -e "^# branch.ab +0";then
+            echo "${prefix}$f"
+        fi
+
+        # if there are stashes
+        if printf "$git_status" | grep -e "^# stash" >/dev/null;then
+            stash_count=$(printf "$git_status" | grep -e "^# stash" | sed -r 's/^# stash ([0-9]+)/\1/')
+            echo "${prefix}  | has $stash_count stash(es)"
+        fi
+        # if there the additions to upsteam are not 0 (unpushed changes)
+        if printf "$git_status" | grep -e '^# branch.ab'| grep -q -v -e '^# branch.ab +0' >/dev/null;then
+            echo "${prefix}  | is ahead of upstream"
+        fi
+        # if there are untracked files
+        if printf "$git_status" | grep -v -e '^# branch' -e '^# stash' | grep -q -e '^?' >/dev/null;then
+            echo "${prefix}  | has untracked files"
+        fi
+        # if there are any lines that are not the above, there are modified file(s)
+        if printf "$git_status" | grep -v -e '^# branch' -e '^# stash' -e '^?' >/dev/null;then
+            echo "${prefix}  | has modified files"
+        fi
+    done
+}
+
 # tars the current directory
 # if no argument is give, the tar is created in the parent directory with this directory's name
 # if an argiment is given, that directory will be tared into a tar file in the current directory
@@ -162,18 +195,26 @@ function show_parallel_jobs {
 	ps -ef | grep -e "perl\s$(which parallel)" | awk '{print $2}' | xargs kill -USR1
 }
 
+# request all running GNU Parallel's to end after their running jobs
+function stop_parallel_jobs {
+	ps -ef | grep -e "perl\s$(which parallel)" | awk '{print $2}' | xargs kill -TERM
+}
+
 # sets a name for a terminal, used to help differentiate terminal sessions
 # name is added to prompt and tab/window title
 # do not give name to clear
 function set_term_name {
 	export PS_TERM_NAME="$*"
 	if [ ! -z "$TMUX" ]; then
-		# rename the session if there is only one window, else rename the window
+		# rename the session if there is only one window
 		if [ $(tmux display-message -p '#{session_windows}') -eq 1 ];then
 			tmux rename-session "$PS_TERM_NAME"
-		else
+		fi
+		# rename the window if there is only one pane
+		if [ $(tmux display-message -p '#{window_panes}') -eq 1 ];then
 			tmux rename-window "$PS_TERM_NAME"
 		fi
+		tmux select-pane -T "$PS_TERM_NAME"
 	fi
 }
 function __get_term_name {
