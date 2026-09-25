@@ -31,7 +31,7 @@
 	whitespace = warn
 
 [branch]
-        sort = -committerdate
+	sort = -committerdate
 
 [commit]
 	template = ~/.gitmessage
